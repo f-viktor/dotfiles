@@ -1,0 +1,189 @@
+# i3 config file (v4)
+# Please see https://i3wm.org/docs/userguide.html for a complete reference!
+
+set $mod Mod4
+
+
+# notification handler
+exec --no-startup-id dunst
+
+# clipboard manager
+exec --no-startup-id xfce4-clipman
+
+# set displays via arandr script
+exec --no-startup-id  "~/.config/i3/screenlayout.sh"
+
+#set up compositor
+exec_always --no-startup-id picom --experimental-backends --backend glx
+
+#set background
+exec_always --no-startup-id "~/.config/papers/randompaper.sh ~/.config/papers/horizontal/ ~/.config/papers/vertical"
+#exec --no-startup-id hsetroot -solid '#000000'
+
+# power menu
+bindsym $mod+Shift+e exec rofi -show Power -modi Power:$HOME/.config/rofi/power.sh 
+
+# kill stuff
+bindsym $mod+k exec rofi -show Kill -modi Kill:$HOME/.config/rofi/terminator.sh 
+
+#lock
+bindsym $mod+l exec multilockscreen -l dimblur --display 2
+
+# set prntscreen
+bindsym F12 exec xfce4-screenshooter
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+font pango:monospace 8
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# start a terminal
+bindsym $mod+Return exec urxvt
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# start dmenu (a program launcher)
+bindsym $mod+d exec rofi -show run
+
+# start network manager
+exec --no-startup-id dhclient
+
+# Screen brightness controls
+# bindsym XF86MonBrightnessUp exec xbacklight -inc 5
+# bindsym XF86MonBrightnessDown exec xbacklight -set 0.06
+
+# change focus
+#bindsym $mod+j focus left
+#bindsym $mod+k focus down
+#bindsym $mod+l focus up
+#bindsym $mod+semicolon focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+semicolon move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+# switch to workspace
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+bar {
+          status_command i3blocks
+           colors {
+                   background #000000
+                   statusline #ffffff
+                   separator #ffffff
+#           			      border background text 
+	           focused_workspace  #FFffff #000000 #ffffff
+        	   active_workspace   #000000 #000000 #aaaaaa
+                   inactive_workspace #000000 #000000 #aaaaaa
+                   urgent_workspace   #2f343a #900000 #ffffff
+                   binding_mode       #2f343a #900000 #ffffff
+           }
+}
+
+#have only the border not the title bar
+for_window [class="^.*"] border pixel 2
+
+# dont autofocus newly opened windows
+no_focus [tiling]
+
+# Custom colors for the window headers and borders
+# class                 border  backgr. text    indicator child_border
+client.focused          #000000 #ffffff #000000 #666666   #FFffff
+client.focused_inactive #000000 #000000 #ffffff #000000   #000000
+client.unfocused        #000000 #000000 #888888 #000000   #000000
+#client.urgent           #2f343a #900000 #ffffff #900000   #900000
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+#
+
+focus_follows_mouse no
+
+
+#gaps inner 20
+#smart_gaps on
+
+
+

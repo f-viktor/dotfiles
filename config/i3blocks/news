@@ -1,0 +1,15 @@
+if [[ -z "${BLOCK_BUTTON}" ]]; then
+   pgrep -x newsboat >/dev/null && \
+   	echo "newsboat open" \
+   	|| echo $(newsboat -x reload print-unread)
+else 
+   #if its runing kill it
+   pgrep -x newsboat >/dev/null
+   if [ $? -eq 0 ]; then
+	pkill -9 newsboat
+        echo $(newsboat -x print-unread)
+   else
+   	echo $(newsboat -x print-unread)
+        urxvt -e newsboat &
+   fi
+fi
