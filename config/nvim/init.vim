@@ -4,5 +4,5 @@
 syntax on
 filetype indent plugin on
 set mouse=c
-colorscheme slate
+colorscheme grassy
 set relativenumber

@@ -44,5 +44,12 @@ SUMMARY=$(fold -w $FOLDLENGTH -s <<< "$SUMMARY" )
 SUMMARY=$(sed 's/^/  /g' <<< $SUMMARY)
 
 echo "1 $1 2 $2 3 $3 4 $4 5 $5 6 $6 7 $7" >> ~/dust
+
+# reinstate filters
+
+if [ "$APPNAME" != "Brave" ]; then
+
 # send the modified notif as a critical alert to avoid looping
-notify-send -i "$ICON" -a "$APPNAME" -u critical "$SUMMARY" "$BODY"
+notify-send -i "$ICON" -a "$APPNAME" -u critical "$SUMMARY" "\n$BODY"
+
+fi
