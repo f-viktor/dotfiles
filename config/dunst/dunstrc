@@ -86,7 +86,7 @@
 
     ### Text ###
 
-    font = Monospace 8
+    font = Noto Sans 8
 
     # The spacing between lines.  If the height is smaller than the
     # font height, it will get raised to the font height.
@@ -126,11 +126,11 @@
     #   %n  progress value if set without any extra characters
     #   %%  Literal %
     # Markup is allowed
-    format = "<b>%s</b>\n%b"
+    format = "<b>    %s</b>\n\n%b"
 
     # Alignment of message text.
     # Possible values are "left", "center" and "right".
-    alignment = left
+    alignment = center
 
     # Show age of message if message is older than show_age_threshold
     # seconds.
@@ -155,12 +155,12 @@
     hide_duplicate_count = false
 
     # Display indicators for URLs (U) and actions (A).
-    show_indicators = yes
+    show_indicators = no
 
     ### Icons ###
 
     # Align icons left/right/off
-    icon_position = left
+    icon_position = right
 
     # Scale larger icons down to this size, set to 0 to disable
     max_icon_size = 100
@@ -288,7 +288,7 @@
     foreground = "#ffffff"
     frame_color = "#ffffff"
     timeout = 10
-    # Icon for notifications with normal urgency, uncomment to enable
+	    # Icon for notifications with normal urgency, uncomment to enable
     #icon = /path/to/icon
 
 [urgency_critical]
@@ -361,28 +361,34 @@
 #        If the notification is already drawn, it won't get undrawn.
 # pushback: same as delay, but when switching into fullscreen, the notification will get
 #           withdrawn from screen again and will get delayed like a new notification
-#[fullscreen_delay_everything]
-#    fullscreen = delay
+[fullscreen_delay_everything]
+    fullscreen = delay
+
 #[fullscreen_show_critical]
 #    msg_urgency = critical
 #    fullscreen = show
 
 
-[spacing_hook_normal]
-   msg_urgency = normal
-   script = ~/.config/dunst/dunsthook.sh
+#[spacing_hook_normal]
+#   msg_urgency = normal
+#   script = ~/.config/dunst/dunsthook.sh
 
-[hide_normal]
-   msg_urgency = normal
-   skip_display = yes
+#[hide_normal]
+#   msg_urgency = normal
+#   skip_display = yes
 
-[spacing_hook_low]
-   msg_urgency = low
-   script = ~/.config/dunst/dunsthook.sh
+#[spacing_hook_low]
+#   msg_urgency = low
+#   script = ~/.config/dunst/dunsthook.sh
 
-[hide_low]
-   msg_urgency = low
-   skip_display = yes
+#[hide_low]
+#   msg_urgency = low
+#   skip_display = yes
+
+[hide-brave]
+  appname = Brave
+  skip_display = yes
+  history_ignore = yes
 
 #[espeak]
 #    summary = "*"
