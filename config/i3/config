@@ -3,6 +3,8 @@
 
 set $mod Mod4
 
+# start polybar    
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # notification handler
 exec --no-startup-id dunst
@@ -149,20 +151,20 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-bar {
-          status_command i3blocks
-           colors {
-                   background #000000
-                   statusline #ffffff
-                   separator #ffffff
-#           			      border background text 
-	           focused_workspace  #FFffff #000000 #ffffff
-        	   active_workspace   #000000 #000000 #aaaaaa
-                   inactive_workspace #000000 #000000 #aaaaaa
-                   urgent_workspace   #2f343a #900000 #ffffff
-                   binding_mode       #2f343a #900000 #ffffff
-           }
-}
+#bar {
+#          status_command i3blocks
+#           colors {
+#                   background #000000
+#                   statusline #ffffff
+#                   separator #ffffff
+##           			      border background text 
+#	           focused_workspace  #FFffff #000000 #ffffff
+#        	   active_workspace   #000000 #000000 #aaaaaa
+#                   inactive_workspace #000000 #000000 #aaaaaa
+#                   urgent_workspace   #2f343a #900000 #ffffff
+#                   binding_mode       #2f343a #900000 #ffffff
+#           }
+#}
 
 #have only the border not the title bar
 for_window [class="^.*"] border pixel 2
