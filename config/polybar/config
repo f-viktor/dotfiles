@@ -101,6 +101,7 @@ enable-ipc = true
 ;needs zscroll-git (aur) and plyaerctl
 type = custom/script
 tail = true
+format-foreground = #aaaaaa
 format-font = 3
 ;probably should change this to something monospaced
 ; also add a font that supports kanji
@@ -110,21 +111,23 @@ format-font = 3
 ;format-prefix = " "
 ;format = <label>
 exec = ~/.config/polybar/polybar-spotify/scroll_spotify_status.sh
-click-left = playerctl play-pause spotify
+click-left = playerctl play-pause -p spotify
 
 [module/spotify-prev]
 type = custom/script
 exec-font = 4
+format-foreground = #555
 exec = ~/.config/polybar/polybar-spotify/spotify_prev.sh
 format = <label>
-click-left = playerctl previous spotify
+click-left = playerctl previous -p spotify
 
 [module/spotify-next]
 type = custom/script
 exec-font = 4
+format-foreground = #555
 exec = ~/.config/polybar/polybar-spotify/spotify_next.sh
 format = <label>
-click-left = playerctl next spotify
+click-left = playerctl next -p spotify
 
 
 [module/xwindow]
@@ -197,11 +200,11 @@ card = intel_backlight
 type = internal/pulseaudio
 
 format-volume = <label-volume> <bar-volume>
-label-volume =  %percentage%%
+label-volume = %{F#555} %{F-}%percentage%%
 label-volume-foreground = ${root.foreground}
 
 label-muted = 🔇 muted
-label-muted-foreground = #666
+label-muted-foreground = #555
 
 bar-volume-width = 10
 bar-volume-foreground-0 = #55aa55
