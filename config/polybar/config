@@ -27,14 +27,33 @@ primary = #ffb000
 secondary = #e60053
 alert = #bd2c40
 
-underline-1 = #aaaaaa
-underline-2 = #bdab84
-underline-3 = #c8ac6f
-underline-4 = #d3ad58
-underline-5 = #dcae45
-underline-6 = #e6ae32
-underline-7 = #eeaf22
-underline-8 = #ffb000
+grad-0 = #aaaaaa
+grad-1 = #adaaa4
+grad-2 = #b0aa9d
+grad-3 = #b4ab96
+grad-4 = #b7ab90
+grad-5 = #baab89
+grad-6 = #beab82
+grad-7 = #c1ac7c
+grad-8 = #c5ac74
+grad-9 = #c8ac6e
+grad-10 = #cbac67
+grad-11 = #cfad60
+grad-12 = #d2ad5a
+grad-13 = #d5ad53
+grad-14 = #d9ad4d
+grad-15 = #dcae46
+grad-16 = #dfae3f
+grad-17 = #e3ae38
+grad-18 = #e6ae31
+grad-19 = #e9ae2b
+grad-20 = #edaf24
+grad-21 = #f0af1d
+grad-22 = #f4af17
+grad-23 = #f7af10
+grad-24 = #fab009
+grad-25 = #fdb004
+grad-26 = #ffb000
 
 
 [bar/main]
@@ -231,7 +250,7 @@ mount-0 = /
 
 label-mounted-font = 4
 
-label-mounted-underline = ${colors.underline-1}
+label-mounted-underline = ${colors.grad-0}
 label-mounted = %{F#555}%mountpoint%%{F-} %percentage_used%%
 label-unmounted = %mountpoint% not mounted
 label-unmounted-foreground = ${colors.foreground-alt}
@@ -241,7 +260,7 @@ type = internal/memory
 interval = 2
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = ${colors.underline-2}
+format-underline = ${colors.grad-4}
 label = %percentage_used%%
 
 [module/cpu]
@@ -249,7 +268,7 @@ type = internal/cpu
 interval = 2
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = ${colors.underline-3}
+format-underline = ${colors.grad-8}
 label = %percentage:2%%
 
 [module/wlan]
@@ -258,7 +277,7 @@ interface = wlp3s0
 interval = 3.0
 
 format-connected = <ramp-signal> <label-connected>
-format-connected-underline = ${colors.underline-4}
+format-connected-underline = ${colors.grad-11}
 label-connected = %essid%
 
 format-disconnected =
@@ -279,7 +298,7 @@ type = internal/network
 interface = enp0s31f6
 interval = 3.0
 
-format-connected-underline = ${colors.underline-5}
+format-connected-underline = ${colors.grad-14}
 format-connected-prefix = " "
 format-connected-prefix-foreground = ${colors.foreground-alt}
 label-connected = %local_ip%
@@ -290,74 +309,6 @@ format-disconnected =
 ;label-disconnected = %ifname% disconnected
 ;label-disconnected-foreground = ${colors.foreground-alt}
 
-[module/date]
-type = internal/date
-interval = 5
-
-date =
-date-alt = " %Y-%m-%d"
-
-time = %H:%M
-time-alt = %H:%M:%S
-
-format-prefix = 
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = ${colors.underline-6} 
-
-label = %date% %time%
-
-[module/temperature]
-type = internal/temperature
-thermal-zone = 0
-warn-temperature = 80
-
-format = <ramp> <label>
-format-underline = ${colors.underline-7} 
-format-warn = <ramp> <label-warn>
-format-warn-underline = ${self.format-underline}
-
-label = %temperature-c%
-label-warn = %temperature-c%
-label-warn-foreground = ${colors.secondary}
-
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
-ramp-foreground = ${colors.foreground-alt}
-
-[module/battery]
-type = internal/battery
-battery = BAT1
-adapter = AC
-full-at = 97
-
-format-charging = <animation-charging> <label-charging>
-format-charging-underline = ${colors.underline-8}
-
-format-discharging = <animation-discharging> <label-discharging>
-format-discharging-underline = ${self.format-charging-underline}
-
-format-full-prefix = " "
-format-full-prefix-foreground = ${colors.foreground-alt}
-format-full-underline = ${self.format-charging-underline}
-
-ramp-capacity-0 = " "
-ramp-capacity-1 = " "
-ramp-capacity-2 = " "
-ramp-capacity-foreground = ${colors.foreground-alt}
-
-animation-charging-0 = ${self.ramp-capacity-0}
-animation-charging-1 = ${self.ramp-capacity-1}
-animation-charging-2 = ${self.ramp-capacity-2}
-animation-charging-foreground = ${colors.foreground-alt}
-animation-charging-framerate = 750
-
-animation-discharging-0 = ${self.ramp-capacity-2}
-animation-discharging-1 = ${self.ramp-capacity-1}
-animation-discharging-2 = ${self.ramp-capacity-0}
-animation-discharging-foreground = ${colors.foreground-alt}
-animation-discharging-framerate = 750
-
 [module/battery2]
 type = internal/battery
 battery = BAT0
@@ -365,7 +316,7 @@ adapter = AC
 full-at = 97
 
 format-charging = <animation-charging> <label-charging>
-format-charging-underline = ${colors.underline-8}
+format-charging-underline = ${colors.grad-17}
 
 format-discharging = <animation-discharging> <label-discharging>
 format-discharging-underline = ${self.format-charging-underline}
@@ -391,6 +342,73 @@ animation-discharging-2 = ${self.ramp-capacity-0}
 animation-discharging-foreground = ${colors.foreground-alt}
 animation-discharging-framerate = 750
 
+[module/battery]
+type = internal/battery
+battery = BAT1
+adapter = AC
+full-at = 97
+
+format-charging = <animation-charging> <label-charging>
+format-charging-underline = ${colors.grad-20}
+
+format-discharging = <animation-discharging> <label-discharging>
+format-discharging-underline = ${self.format-charging-underline}
+
+format-full-prefix = " "
+format-full-prefix-foreground = ${colors.foreground-alt}
+format-full-underline = ${self.format-charging-underline}
+
+ramp-capacity-0 = " "
+ramp-capacity-1 = " "
+ramp-capacity-2 = " "
+ramp-capacity-foreground = ${colors.foreground-alt}
+
+animation-charging-0 = ${self.ramp-capacity-0}
+animation-charging-1 = ${self.ramp-capacity-1}
+animation-charging-2 = ${self.ramp-capacity-2}
+animation-charging-foreground = ${colors.foreground-alt}
+animation-charging-framerate = 750
+
+animation-discharging-0 = ${self.ramp-capacity-2}
+animation-discharging-1 = ${self.ramp-capacity-1}
+animation-discharging-2 = ${self.ramp-capacity-0}
+animation-discharging-foreground = ${colors.foreground-alt}
+animation-discharging-framerate = 750
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 80
+
+format = <ramp> <label>
+format-underline = ${colors.grad-23} 
+format-warn = <ramp> <label-warn>
+format-warn-underline = ${self.format-underline}
+
+label = %temperature-c%
+label-warn = %temperature-c%
+label-warn-foreground = ${colors.secondary}
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-foreground = ${colors.foreground-alt}
+
+[module/date]
+type = internal/date
+interval = 5
+
+date =
+date-alt = " %Y-%m-%d"
+
+time = %H:%M
+time-alt = %H:%M:%S
+
+format-prefix = 
+format-prefix-foreground = ${colors.foreground-alt}
+format-underline = ${colors.grad-26} 
+
+label = %date% %time%
 
 [settings]
 screenchange-reload = true
