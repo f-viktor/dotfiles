@@ -389,6 +389,9 @@ label = %temperature-c%
 label-warn = %temperature-c%
 label-warn-foreground = ${colors.secondary}
 
+;what are we displaying the temperature of    
+hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon1/temp1_input 
+
 ramp-0 = 
 ramp-1 = 
 ramp-2 = 
