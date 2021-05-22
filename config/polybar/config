@@ -27,37 +27,18 @@ primary = #ffb000
 secondary = #e60053
 alert = #bd2c40
 
-grad-0 = #aaaaaa
-grad-1 = #adaaa4
-grad-2 = #b0aa9d
-grad-3 = #b4ab96
-grad-4 = #b7ab90
-grad-5 = #baab89
-grad-6 = #beab82
-grad-7 = #c1ac7c
-grad-8 = #c5ac74
-grad-9 = #c8ac6e
-grad-10 = #cbac67
-grad-11 = #cfad60
-grad-12 = #d2ad5a
-grad-13 = #d5ad53
-grad-14 = #d9ad4d
-grad-15 = #dcae46
-grad-16 = #dfae3f
-grad-17 = #e3ae38
-grad-18 = #e6ae31
-grad-19 = #e9ae2b
-grad-20 = #edaf24
-grad-21 = #f0af1d
-grad-22 = #f4af17
-grad-23 = #f7af10
-grad-24 = #fab009
-grad-25 = #fdb004
-grad-26 = #ffb000
+underline-1 = #aaaaaa
+underline-2 = #bdab84
+underline-3 = #c8ac6f
+underline-4 = #d3ad58
+underline-5 = #dcae45
+underline-6 = #e6ae32
+underline-7 = #eeaf22
+underline-8 = #ffb000
 
 
 [bar/main]
-;monitor = ${env:MONITOR:HDMI-1}
+monitor = ${env:MONITOR:DVI-D-0}
 width = 100%
 height = 27
 ;offset-x = 50%
@@ -72,7 +53,7 @@ foreground = ${colors.foreground}
 line-size = 3
 line-color = #f00
 
-border-size = 4
+border-size = 0
 border-color = #00000000
 
 padding-left = 0
@@ -91,7 +72,9 @@ font-4 = Noto Sans Mono:pixelsize=10;1:antialias=true
 ;font-n = Font Awesome 5 Free Solid:pixelsize=10;3
 ;font-n = Font Awesome 5 Brands:pixelsize=10;3
 
-modules-left = date temperature battery battery2 eth wlan cpu memory filesystem pulseaudio xbacklight 
+#modules-left = date temperature battery battery2 eth wlan cpu memory filesystem pulseaudio xbacklight     
+ 
+modules-left = date temperature eth wlan cpu memory filesystem newsboat newsboat-update yamanote audio-output pulseaudio
 modules-center = spotify-prev spotify spotify-next
 modules-right = i3
 
@@ -215,11 +198,19 @@ inherit = module/xbacklight
 type = internal/backlight
 card = intel_backlight
 
+[module/audio-output]
+type = custom/script    
+exec-font = 4    
+format-foreground = #555    
+format = <label>    
+exec = ~/.config/polybar/audio-output/audio-output.sh    
+click-left = ~/.config/polybar/audio-output/audio-output.sh --toggle    
+    
 [module/pulseaudio]
 type = internal/pulseaudio
 
 format-volume = <label-volume> <bar-volume>
-label-volume = %{F#555} %{F-}%percentage%%
+label-volume = %percentage%%
 label-volume-foreground = ${root.foreground}
 
 label-muted = 🔇 muted
@@ -242,15 +233,39 @@ bar-volume-empty = ─
 bar-volume-empty-font = 2
 bar-volume-empty-foreground = ${colors.foreground-alt}
 
+[module/yamanote]
+type = custom/script
+exec-font = 4
+format-foreground = #555
+format = <label>
+exec = sudo ~/.config/polybar/yamanote/yamanote.sh
+click-left = sudo ~/.config/polybar/yamanote/yamanote.sh --toggle
+
+[module/newsboat]
+type = custom/script
+label-foreground = #555
+format = <label>
+format-underline = ${colors.underline-1}
+label =  %{F#ffffff}%output%%{F-}
+;this needs a separate script so it shows something even when its open
+exec = ~/.config/polybar/news/news-status.sh
+click-left = ~/.config/polybar/news/news.sh
+
+[module/newsboat-update]
+type = custom/script
+format = <label>
+label = ""
+exec = newsboat -x reload && notify-send "Newsboat updated" 
+interval = 3600
+
 [module/filesystem]
 type = internal/fs
 interval = 25
-
 mount-0 = /
 
-label-mounted-font = 4
+label-mounted-font = 1
 
-label-mounted-underline = ${colors.grad-0}
+label-mounted-underline = ${colors.underline-2}
 label-mounted = %{F#555}%mountpoint%%{F-} %percentage_used%%
 label-unmounted = %mountpoint% not mounted
 label-unmounted-foreground = ${colors.foreground-alt}
@@ -260,7 +275,7 @@ type = internal/memory
 interval = 2
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = ${colors.grad-4}
+format-underline = ${colors.underline-3}
 label = %percentage_used%%
 
 [module/cpu]
@@ -268,7 +283,7 @@ type = internal/cpu
 interval = 2
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = ${colors.grad-8}
+format-underline = ${colors.underline-4}
 label = %percentage:2%%
 
 [module/wlan]
@@ -277,7 +292,7 @@ interface = wlp3s0
 interval = 3.0
 
 format-connected = <ramp-signal> <label-connected>
-format-connected-underline = ${colors.grad-11}
+format-connected-underline = ${colors.underline-5}
 label-connected = %essid%
 
 format-disconnected =
@@ -298,7 +313,7 @@ type = internal/network
 interface = enp0s31f6
 interval = 3.0
 
-format-connected-underline = ${colors.grad-14}
+format-connected-underline = ${colors.underline-6}
 format-connected-prefix = " "
 format-connected-prefix-foreground = ${colors.foreground-alt}
 label-connected = %local_ip%
@@ -309,38 +324,44 @@ format-disconnected =
 ;label-disconnected = %ifname% disconnected
 ;label-disconnected-foreground = ${colors.foreground-alt}
 
-[module/battery2]
-type = internal/battery
-battery = BAT0
-adapter = AC
-full-at = 97
+[module/date]
+type = internal/date
+interval = 5
 
-format-charging = <animation-charging> <label-charging>
-format-charging-underline = ${colors.grad-17}
+date =
+date-alt = " %Y-%m-%d"
 
-format-discharging = <animation-discharging> <label-discharging>
-format-discharging-underline = ${self.format-charging-underline}
+time = %H:%M
+time-alt = %H:%M:%S
 
-format-full-prefix = ""
-format-full-prefix-foreground = ${colors.foreground-alt}
-format-full-underline = ${self.format-charging-underline}
+format-prefix = 
+format-prefix-foreground = ${colors.foreground-alt}
+format-underline = ${colors.underline-8}
 
-ramp-capacity-0 = ""
-ramp-capacity-1 = ""
-ramp-capacity-2 = ""
-ramp-capacity-foreground = ${colors.foreground-alt}
+label = %date% %time%
 
-animation-charging-0 = ${self.ramp-capacity-0}
-animation-charging-1 = ${self.ramp-capacity-1}
-animation-charging-2 = ${self.ramp-capacity-2}
-animation-charging-foreground = ${colors.foreground-alt}
-animation-charging-framerate = 750
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 80
 
-animation-discharging-0 = ${self.ramp-capacity-2}
-animation-discharging-1 = ${self.ramp-capacity-1}
-animation-discharging-2 = ${self.ramp-capacity-0}
-animation-discharging-foreground = ${colors.foreground-alt}
-animation-discharging-framerate = 750
+format = <ramp> <label>
+format-underline = ${colors.underline-7}
+format-warn = <ramp> <label-warn>
+format-warn-underline = ${self.format-underline}
+
+label = %temperature-c%
+label-warn = %temperature-c%
+label-warn-foreground = ${colors.secondary}
+
+;what are we displaying the temperature of
+hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon?/temp1_input
+;hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon2/temp1_input
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-foreground = ${colors.foreground-alt}
 
 [module/battery]
 type = internal/battery
@@ -349,7 +370,7 @@ adapter = AC
 full-at = 97
 
 format-charging = <animation-charging> <label-charging>
-format-charging-underline = ${colors.grad-20}
+format-charging-underline = ${colors.underline-8}
 
 format-discharging = <animation-discharging> <label-discharging>
 format-discharging-underline = ${self.format-charging-underline}
@@ -375,43 +396,39 @@ animation-discharging-2 = ${self.ramp-capacity-0}
 animation-discharging-foreground = ${colors.foreground-alt}
 animation-discharging-framerate = 750
 
-[module/temperature]
-type = internal/temperature
-thermal-zone = 0
-warn-temperature = 80
+[module/battery2]
+type = internal/battery
+battery = BAT0
+adapter = AC
+full-at = 97
 
-format = <ramp> <label>
-format-underline = ${colors.grad-23} 
-format-warn = <ramp> <label-warn>
-format-warn-underline = ${self.format-underline}
+format-charging = <animation-charging> <label-charging>
+format-charging-underline = ${colors.underline-8}
 
-label = %temperature-c%
-label-warn = %temperature-c%
-label-warn-foreground = ${colors.secondary}
+format-discharging = <animation-discharging> <label-discharging>
+format-discharging-underline = ${self.format-charging-underline}
 
-;what are we displaying the temperature of    
-hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon1/temp1_input 
+format-full-prefix = ""
+format-full-prefix-foreground = ${colors.foreground-alt}
+format-full-underline = ${self.format-charging-underline}
 
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
-ramp-foreground = ${colors.foreground-alt}
+ramp-capacity-0 = ""
+ramp-capacity-1 = ""
+ramp-capacity-2 = ""
+ramp-capacity-foreground = ${colors.foreground-alt}
 
-[module/date]
-type = internal/date
-interval = 5
+animation-charging-0 = ${self.ramp-capacity-0}
+animation-charging-1 = ${self.ramp-capacity-1}
+animation-charging-2 = ${self.ramp-capacity-2}
+animation-charging-foreground = ${colors.foreground-alt}
+animation-charging-framerate = 750
 
-date =
-date-alt = " %Y-%m-%d"
+animation-discharging-0 = ${self.ramp-capacity-2}
+animation-discharging-1 = ${self.ramp-capacity-1}
+animation-discharging-2 = ${self.ramp-capacity-0}
+animation-discharging-foreground = ${colors.foreground-alt}
+animation-discharging-framerate = 750
 
-time = %H:%M
-time-alt = %H:%M:%S
-
-format-prefix = 
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = ${colors.grad-26} 
-
-label = %date% %time%
 
 [settings]
 screenchange-reload = true
