@@ -1,7 +1,7 @@
 HEADPHONE=
 SPEAKER=
-# pacmd list-sinks  <-index numbmer for headphone output
-HEADPHONE_ID=24
+# pacmd list-sinks  <-card_name for headphone output
+HEADPHONE_CARD_NAME="HDA NVidia"
 
 
 
@@ -26,7 +26,7 @@ function set_default_playback_device_next {
 
 
 # decide whether the hotspot is working based on whether hostapd is running
-if pacmd list-sinks | grep "\*" | grep -q "index: $HEADPHONE_ID"; then
+if pacmd list-sinks | grep "\*" -A 40 | grep -q "$HEADPHONE_CARD_NAME"; then
 	if [[ $1 = "--toggle" ]]; then
 		set_default_playback_device_next
 		echo $SPEAKER
@@ -41,8 +41,3 @@ else
 		echo $SPEAKER
 	fi
 fi
-
-
-
-
-
