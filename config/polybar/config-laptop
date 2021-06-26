@@ -65,16 +65,16 @@ module-margin-right = 2
 font-0 = Noto Sans:pixelsize=10;1:antialias=true
 font-1 = Noto Sans Symbols:fontformat=truetype:size=8:antialias=true;0
 font-2 = Noto Sans Mono CJK JP:pixelsize=10;1:antialias=true
-font-3 = Font Awesome 5 Free:style=Solid:pixelsize=10;1
+font-3 = Font Awesome 5 Free Solid:pixelsize=10;1
 font-4 = Noto Sans Mono:pixelsize=10;1:antialias=true
-font-5 = Noto Color Emoji:scale=8;1:antialias=true
 
 ;font-n = Font Awesome 5 Free:pixelsize=10;3
 ;font-n = Font Awesome 5 Free Solid:pixelsize=10;3
 ;font-n = Font Awesome 5 Brands:pixelsize=10;3
 
-#modules-left = date temperature battery battery2 eth wlan cpu memory filesystem pulseaudio xbacklight
-modules-left = date temperature eth wlan cpu memory filesystem newsboat newsboat-update yamanote audio-output pulseaudio tea-timer
+#modules-left = date temperature battery battery2 eth wlan cpu memory filesystem pulseaudio xbacklight     
+ 
+modules-left = date temperature eth wlan cpu memory filesystem newsboat newsboat-update yamanote audio-output pulseaudio
 modules-center = spotify-prev spotify spotify-next
 modules-right = i3
 
@@ -198,30 +198,14 @@ inherit = module/xbacklight
 type = internal/backlight
 card = intel_backlight
 
-[module/tea-timer]
-type = custom/script
-exec-font = 4
-format-foreground = #555
-
-
-exec = ~/.config/polybar/timer/tea-timer.sh tail '' 5
-tail = true
-
-click-left = ~/.config/polybar/timer/tea-timer.sh start ; ~/.config/polybar/timer/tea-timer.sh update %pid%
-click-right = ~/.config/polybar/timer/tea-timer.sh cancel ; ~/.config/polybar/timer/tea-timer.sh update %pid%
-scroll-up = ~/.config/polybar/timer/tea-timer.sh increase 5 '🍵' 'notify-send "Tea ready!" "紅茶がご用意できております" -i ~/.config/polybar/timer/tea.jpg & ffplay -loglevel error -nodisp -autoexit ~/.config/polybar/timer/timernotif.webm' ; ~/.config/polybar/timer/tea-timer.sh update %pid%
-click-middle = ~/.config/polybar/timer/tea-timer.sh increase 60 '🍵' 'notify-send "Tea ready!" "紅茶がご用意できております" -i ~/.config/polybar/timer/tea.jpg & ffplay -loglevel error -nodisp -autoexit ~/.config/polybar/timer/timernotif.webm' ; ~/.config/polybar/timer/tea-timer.sh update %pid%
-
-scroll-down = ~/.config/polybar/timer/tea-timer.sh increase -5 ; ~/.config/polybar/timer/tea-timer.sh update %pid%
-
 [module/audio-output]
-type = custom/script
-exec-font = 4
-format-foreground = #555
-format = <label>
-exec = ~/.config/polybar/audio-output/audio-output.sh
-click-left = ~/.config/polybar/audio-output/audio-output.sh --toggle
-
+type = custom/script    
+exec-font = 4    
+format-foreground = #555    
+format = <label>    
+exec = ~/.config/polybar/audio-output/audio-output.sh    
+click-left = ~/.config/polybar/audio-output/audio-output.sh --toggle    
+    
 [module/pulseaudio]
 type = internal/pulseaudio
 
@@ -271,7 +255,7 @@ click-left = ~/.config/polybar/news/news.sh
 type = custom/script
 format = <label>
 label = ""
-exec = newsboat -x reload && notify-send "Newsboat updated"
+exec = newsboat -x reload && notify-send "Newsboat updated" 
 interval = 3600
 
 [module/filesystem]
