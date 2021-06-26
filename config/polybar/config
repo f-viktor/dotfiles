@@ -209,8 +209,8 @@ tail = true
 
 click-left = ~/.config/polybar/timer/tea-timer.sh start ; ~/.config/polybar/timer/tea-timer.sh update %pid%
 click-right = ~/.config/polybar/timer/tea-timer.sh cancel ; ~/.config/polybar/timer/tea-timer.sh update %pid%
-scroll-up = ~/.config/polybar/timer/tea-timer.sh increase 5 '🍵' 'notify-send "Tea ready!" "紅茶がご用意できております" -i ~/.config/polybar/timer/tea.jpg & ffplay -loglevel error -nodisp -autoexit ~/.config/polybar/timer/timernotif.webm' ; ~/.config/polybar/timer/tea-timer.sh update %pid%
-click-middle = ~/.config/polybar/timer/tea-timer.sh increase 60 '🍵' 'notify-send "Tea ready!" "紅茶がご用意できております" -i ~/.config/polybar/timer/tea.jpg & ffplay -loglevel error -nodisp -autoexit ~/.config/polybar/timer/timernotif.webm' ; ~/.config/polybar/timer/tea-timer.sh update %pid%
+scroll-up = ~/.config/polybar/timer/tea-timer.sh increase 5 '🍵' 'notify-send "Tea ready!" "お茶がご用意できております" -i ~/.config/polybar/timer/tea.jpg & ffplay -loglevel error -nodisp -autoexit ~/.config/polybar/timer/timernotif.webm' ; ~/.config/polybar/timer/tea-timer.sh update %pid%
+click-middle = ~/.config/polybar/timer/tea-timer.sh increase 60 '🍵' 'notify-send "Tea ready!" "お茶がご用意できております" -i ~/.config/polybar/timer/tea.jpg & ffplay -loglevel error -nodisp -autoexit ~/.config/polybar/timer/timernotif.webm' ; ~/.config/polybar/timer/tea-timer.sh update %pid%
 
 scroll-down = ~/.config/polybar/timer/tea-timer.sh increase -5 ; ~/.config/polybar/timer/tea-timer.sh update %pid%
 
