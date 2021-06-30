@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/bin/bash
 
-### Looksely based on:   https://github.com/jbirnick/polybar-timer
+### Loosely based on:   https://github.com/jbirnick/polybar-timer
 
 ## FUNCTIONS
 
@@ -19,19 +19,22 @@ timerRemaining () { cat /tmp/polybar-timer/remaining ; }
 secondsLeft () { echo $(( $(timerExpiry) - $(now) )) ; }
 
 updateTail () {
-  if timerRunning && [ $(secondsLeft) -le 0 ]
+  if timerExists && timerRunning && [ $(secondsLeft) -le 0 ]
   then
-    echo "${STANDBY_LABEL}"
+    echo %{F\#555}${STANDBY_LABEL}%{F-}
     eval $(timerAction < /dev/null)
 
     killTimer
   fi
 
-  if timerRunning
+  if timerRunning 
   then
-    echo "$(timerLabel) $(secondsLeft)"
-  else
-    echo "${STANDBY_LABEL} $(timerRemaining)"
+	 echo "$(timerLabel) $(secondsLeft)"
+  elif timerExists
+      then
+   	   echo "${STANDBY_LABEL} $(timerRemaining)"
+      else
+	     echo %{F\#555}${STANDBY_LABEL}%{F-}
   fi
 }
 
