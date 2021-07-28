@@ -1,0 +1,209 @@
+
+/* Vomnibar CSS */
+
+#vomnibar ol, #vomnibar ul {
+  list-style: none;
+  display: none;
+}
+
+#vomnibar {
+  display: block;
+  position: fixed;
+  width: calc(100% - 20px); /* adjusted to keep border radius and box-shadow visible*/
+  /*min-width: 400px;
+  top: 70px;
+  left: 50%;*/
+  top: 8px;
+  left: 8px;
+  /*margin: 0 0 0 -40%;*/
+  font-family: sans-serif;
+
+  background-color: #282828;
+  text-align: left;
+  border-radius: 4px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.8);
+  border: 1px solid #aaa;
+  z-index: 2139999999; /* One less than hint markers and the help dialog (see ../content_scripts/vimium.css). */
+}
+
+#vomnibar input {
+  color: #ebdbb2;
+  font-family: Noto Sans;
+  font-size: 20px;
+  height: 34px;
+  margin-bottom: 0;
+  padding: 4px;
+  background-color: #1d2021;
+  border-radius: 3px;
+  border: 1px solid #282828;
+  box-shadow: #add8e6 0px 0px 1px;
+  width: 100%;
+  outline: none;
+  box-sizing: border-box;
+}
+
+#vomnibar .vomnibarSearchArea {
+  display: block;
+  padding: 10px;
+  background-color: #1d2021;
+  border-radius: 4px 4px 0 0;
+  border-bottom: 0px solid #add8e6;
+}
+
+#vomnibar ul {
+  background-color: #282828;
+  border-radius: 0 0 4px 4px;
+  list-style: none;
+  padding: 10px 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-block-start: 2px;
+  margin-block-end: 0px;
+}
+
+#vomnibar li {
+  border-bottom: 1px solid #1d2021;
+  line-height: 1.1em;
+  padding: 7px 10px;
+  font-size: 16px;
+  color: f8f8f2;
+  position: relative;
+  display: list-item;
+  margin: auto;
+}
+
+#vomnibar li:last-of-type {
+  border-bottom: none;
+}
+
+#vomnibar li .vomnibarTopHalf, #vomnibar li .vomnibarBottomHalf {
+  display: block;
+  overflow: hidden;
+}
+
+#vomnibar li .vomnibarBottomHalf {
+  font-size: 15px;
+  margin-top: 3px;
+  padding: 2px 0;
+}
+
+#vomnibar li .vomnibarIcon {
+  padding: 0 13px 0 6px;
+  vertical-align: bottom;
+}
+
+#vomnibar li .vomnibarSource {
+  color: #689d6a;
+  margin-right: 4px;
+}
+#vomnibar li .vomnibarRelevancy {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 5px;
+  background-color: #282a36;
+  color: #ebdbb2;
+  font-family: Noto Sans;
+  width: 100px;
+  overflow: hidden;
+}
+
+#vomnibar li .vomnibarUrl {
+  white-space: nowrap;
+  color: #83a598;
+}
+
+#vomnibar li .vomnibarMatch {
+  font-weight: bold;
+  color: #ebdbb2;
+}
+
+#vomnibar li em, #vomnibar li .vomnibarTitle {
+  color: #ebdbb2;
+  margin-left: 4px;
+  font-weight: normal;
+}
+#vomnibar li em { font-style: italic; }
+#vomnibar li em .vomnibarMatch, #vomnibar li .vomnibarTitle .vomnibarMatch {
+  color: #fabd2f;
+}
+
+#vomnibar li.vomnibarSelected {
+  background-color: #181D24;
+  font-weight: normal;
+}
+
+#vomnibarInput::selection {
+  /* This is the light grey color of the vomnibar border. */
+  /* background-color: #F1F1F1; */
+
+  /* This is the light blue color of the vomnibar selected item. */
+  /* background-color: #BBCEE9; */
+
+  /* This is a considerably lighter blue than Vimium blue, which seems softer
+   * on the eye for this purpose. */
+   background-color: #458588;
+}
+
+.vomnibarInsertText {
+}
+
+.vomnibarNoInsertText {
+  visibility: hidden;
+}
+
+/* Dark Vomnibar */
+
+@media (prefers-color-scheme: dark) {
+  #vomnibar {
+    border: 1px solid rgba(0, 0, 0, 0.7);
+    border-radius: 6px;
+  }
+
+  #vomnibar .vomnibarSearchArea, #vomnibar {
+    background-color: #35363a;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  #vomnibar input {
+    background-color: #202124;
+    color: white;
+    border: none;
+  }
+
+  #vomnibar ul {
+    background-color: #202124;
+  }
+
+  #vomnibar li {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  #vomnibar li.vomnibarSelected {
+    background-color: #37383a;
+  }
+
+  #vomnibar li .vomnibarUrl {
+    white-space: nowrap;
+    color: #5ca1f7;
+  }
+
+  #vomnibar li em,
+  #vomnibar li .vomnibarTitle {
+    color: white;
+  }
+
+  #vomnibar li .vomnibarSource {
+    color: #9aa0a6;
+  }
+
+  #vomnibar li .vomnibarMatch {
+    color: white;
+  }
+
+  #vomnibar li em .vomnibarMatch,
+  #vomnibar li .vomnibarTitle .vomnibarMatch {
+    color: white;
+  }
+}
+
