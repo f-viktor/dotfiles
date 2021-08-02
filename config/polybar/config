@@ -225,7 +225,7 @@ click-left = ~/.config/polybar/audio-output/audio-output.sh --toggle
 [module/pulseaudio]
 type = internal/pulseaudio
 
-format-volume = <label-volume> <bar-volume>
+format-volume = <label-volume>
 label-volume = %percentage%%
 label-volume-foreground = ${root.foreground}
 
