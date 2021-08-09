@@ -1,17 +1,21 @@
+! ln -s .Xdefaults .Xresources
+Sxiv.background: #000000
+Sxiv.foreground: #ffffff
+
 !urxvt configuration
-URxvt.termName: rxvt-unicode-256color
+!URxvt.termName: rxvt-unicode-256color
 URxvt.transparent: true
 URxvt.shading: 30
 URxvt.inheritPixmap: False
-URxvt.imLocale: en_us.UTF-8
+!URxvt.imLocale: en_us.UTF-8
 URxvt.scrollBar: false
 URxvt.saveLines: 5000
 URxvt.url-launcher: brave
 URxvt.cursorBlink: true
 URxvt.geometry: 80x20
 URxvt.fading: 15%
-urxvt.font:       xft:Noto Sans Mono:pixelsize=14
-urxvt.boldFont:   xft:Noto Sans Mono:bold:pixelsize=14
+urxvt.font:       xft:Noto Sans Mono:pixelsize=14,xft:Noto Color Emoji:pixelsize=14
+urxvt.boldFont:   xft:Noto Sans Mono:bold:pixelsize=14,xft:Noto Color Emoji:pixelsize=14
 urxvt.depth: 32
 urxvt.background: rgba:0000/0000/0000/8888
 URxvt.foreground: white
@@ -20,9 +24,9 @@ URxvt.blurRadius: 5
 URxvt.letterSpace: -1
 
 
-URxvt.perl-ext-common: default,matcher,selection-to-clipboard
+URxvt.perl-ext-common: default,matcher,selection-to-clipboard,resize-font
 ! make it ctrl+shit+c / v to copy / paste
-URxvt.keysym.Shift-Control-V: builtin-string: 
+URxvt.keysym.Shift-Control-V: builtin-string:
 URxvt.keysym.Shift-Control-C: builtin-string:
 
 URxvt.keysym.Shift-Control-V: eval:paste_clipboard
@@ -36,49 +40,47 @@ URxvt.iso14755_52: false
 
 ! set up url launcher
 URxvt.matcher.button: 2
-URxvt.keysym.C-Delete: perl:matcher:last
 URxvt.keysym.M-Delete: perl:matcher:list
 URxvt.matcher.rend.0: Uline Bold fg6
+URxvt.matcher.background: #ffffff
 
-
-!URxvt.perl-ext: default,url-select
-!URxvt.keysym.M-u: perl:url-select:select_next
-!URxvt.url-select.launcher: /usr/bin/xdg-open
-!URxvt.url-select.underline: true
+! Resize-font
+URxvt.resize-font.smaller: C-j
+URxvt.resize-font.bigger: C-k
 
 ! special
 !*.foreground:   #e6dedb
 !*.background:   #020202
 !*.cursorColor:  #e6dedb
- 
+
 ! black
 !*.color0:       #ffffff
 !*.color8:       #ffffff
- 
+
 ! red
 !*.color1:       #00a904
 !*.color9:       #60a4ff
- 
+
 ! green
 !*.color2:       #00a904
 !*.color10:      #60a4ff
- 
+
 ! yellow
 *.color3:       #ffb000
 !*.color11:      #db8fb2
- 
+
 ! blue
 *.color4:       #1497FF
 *.color12:      #ffb000
- 
+
 ! magenta
 !*.color5:       #908077
 !*.color13:      #d39a6d
- 
+
 ! cyan
 !*.color6:       #c1ab9f
 !*.color14:      #ffffff
- 
+
 ! white
 !*.color7:       #6f6f6f
 !*.color15:      #e4e4e4
