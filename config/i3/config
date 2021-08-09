@@ -1,9 +1,10 @@
+
 # i3 config file (v4)
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
 
-# start polybar        
+# start polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # notification handler
@@ -26,10 +27,10 @@ exec_always --no-startup-id "~/.config/papers/randompaper.sh ~/.config/papers/ho
 bindsym $mod+F9 exec redshift -g 0.8
 
 # power menu
-bindsym $mod+Shift+e exec rofi -show Power -modi Power:$HOME/.config/rofi/power.sh 
+bindsym $mod+Shift+e exec rofi -show Power -modi Power:$HOME/.config/rofi/power.sh
 
 # kill stuff
-bindsym $mod+Escape exec rofi -show Kill -modi Kill:$HOME/.config/rofi/terminator.sh 
+bindsym $mod+Escape exec rofi -show Kill -modi Kill:$HOME/.config/rofi/terminator.sh
 
 #lock
 bindsym $mod+BackSpace exec multilockscreen -l dimblur --display 2
@@ -57,29 +58,31 @@ bindsym $mod+d exec rofi -show run
 # bindsym XF86MonBrightnessUp exec xbacklight -inc 5
 # bindsym XF86MonBrightnessDown exec xbacklight -set 0.06
 
+# Use pactl to adjust volume in PulseAudio.
+#bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
+#bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10%
+#bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+#bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
+#bindsym XF86AudioPlay exec --no-startup-id playerctl -p spotify play-pause
+#bindsym XF86AudioNext exec --no-startup-id playerctl -p spotify next
+#bindsym XF86AudioPrev exec --no-startup-id playerctl -p spotify previous
+
+bindsym $mod+Ctrl+Up exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
+bindsym $mod+Ctrl+Down exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10%
+bindsym $mod+Ctrl+Righ exec --no-startup-id playerctl -p spotify next
+bindsym $mod+Ctrl+Left exec --no-startup-id playerctl -p spotify previous
+
 # change focus
 bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
 
-# alternatively, you can use the cursor keys:
-#bindsym $mod+Left focus left
-#bindsym $mod+Down focus down
-#bindsym $mod+Up focus up
-#bindsym $mod+Right focus right
-
 # move focused window
 bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
-
-# alternatively, you can use the cursor keys:
-#bindsym $mod+Shift+Left move left
-#bindsym $mod+Shift+Down move down
-#bindsym $mod+Shift+Up move up
-#bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
 bindsym $mod+c split h
@@ -157,7 +160,7 @@ bindsym $mod+r mode "resize"
 #                   background #000000
 #                   statusline #ffffff
 #                   separator #ffffff
-#           			      border background text 
+#           			      border background text
 #	           focused_workspace  #FFffff #000000 #ffffff
 #        	   active_workspace   #000000 #000000 #aaaaaa
 #                   inactive_workspace #000000 #000000 #aaaaaa
@@ -189,4 +192,3 @@ focus_follows_mouse no
 
 #gaps inner 20
 #smart_gaps on
-
