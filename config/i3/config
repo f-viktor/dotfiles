@@ -69,7 +69,7 @@ bindsym $mod+d exec rofi -show run
 
 bindsym $mod+Ctrl+Up exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
 bindsym $mod+Ctrl+Down exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10%
-bindsym $mod+Ctrl+Righ exec --no-startup-id playerctl -p spotify next
+bindsym $mod+Ctrl+Right exec --no-startup-id playerctl -p spotify next
 bindsym $mod+Ctrl+Left exec --no-startup-id playerctl -p spotify previous
 
 # change focus
