@@ -1,0 +1,1 @@
+echo $1 | cut -c 6- |sed 's/^ *//g' | tr '\n' ' ' | xdotool type --file /dev/stdin --clearmodifiers  --delay 0
