@@ -23,7 +23,7 @@
 		</commands>
 	</action>
 	<action>
-		<name>remove-newline</name>
+		<name>&quot;Quote&quot;</name>
 		<regex>^quote((.|\n)+)</regex>
 		<group>0</group>
 		<commands>
