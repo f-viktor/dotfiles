@@ -29,7 +29,7 @@
 		<commands>
 			<command>
 				<name>Remove newlines</name>
-				<exec>/home/pepe/.config/xfce4/panel/newliner &quot;\0&quot;</exec>
+				<exec>/home/username/.config/xfce4/panel/newliner &quot;\0&quot;</exec>
 			</command>
 		</commands>
 	</action>
