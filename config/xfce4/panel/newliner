@@ -1,1 +1,2 @@
-echo $1 | cut -c 6- |sed 's/^ *//g' | tr '\n' ' ' | xdotool type --file /dev/stdin --clearmodifiers  --delay 0
+#!/bin/sh
+printf "%s" "$*" | cut -c 6-  | sed 's/^ *//g' | tr '\n' ' ' | xdotool type --clearmodifiers --file /dev/stdin  --delay 0
