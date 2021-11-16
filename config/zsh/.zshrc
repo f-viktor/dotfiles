@@ -93,8 +93,7 @@ if [ $(cat  /proc/sys/kernel/yama/ptrace_scope) != 0 ]; then
 alias sc='soket'
 #alias sc='printf "socat TCP-LISTEN:31337,reuseaddr,fork EXEC:%s\n" $1'
 
-alias r='lfcd'
-
+alias r='~/.config/lf/lf-ueberzug'
 
 
 # Load zsh-syntax-highlighting; should be last.
