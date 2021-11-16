@@ -1,3 +1,9 @@
+#Prerequisites:
+#ueberzug
+#graphicsmagick (for svg and gif previews)
+#ffmpeg (for video file thumbnails)
+#gs (for pdf previews)
+
 set previewer ~/.config/lf/lf-ueberzug-previewer
 set cleaner ~/.config/lf/lf-ueberzug-cleaner
 
