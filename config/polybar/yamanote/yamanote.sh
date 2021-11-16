@@ -21,7 +21,7 @@ enable_hotspot () {
 }
 
 disable_hotspot() {
-	nmcli c dowm hotsp
+	nmcli c dowm $CONNAME
 #iptables -t nat -F
 #iptables -t mangle -F
 #iptables -F
