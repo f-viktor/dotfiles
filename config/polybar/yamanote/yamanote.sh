@@ -1,4 +1,4 @@
-TAG=山手線
+TAG=yamanote
 
 # define interfaces
 WIFI=wlp3s0
