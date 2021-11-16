@@ -36,7 +36,7 @@ _comp_options+=(globdots)		# Include hidden files.
 # Use lf to switch directories and bind it to ctrl-o
 lfcd () {
     tmp="$(mktemp)"
-    lf -last-dir-path="$tmp" "$@"
+    ~/.config/lf/lf-ueberzug -last-dir-path="$tmp" "$@"
     if [ -f "$tmp" ]; then
         dir="$(cat "$tmp")"
         rm -f "$tmp"
@@ -51,7 +51,7 @@ bindkey '^e' edit-command-line
 # defaults, tho they don't work
 export EDITOR=nvim
 export BROWSER=brave
-
+export PATH=$PATH:~/go/bin
 # rebind buttons because zsh doesnt read /etc/inputrc
 # just start cat, and press the button you want
 # urxvt
@@ -93,7 +93,8 @@ if [ $(cat  /proc/sys/kernel/yama/ptrace_scope) != 0 ]; then
 alias sc='soket'
 #alias sc='printf "socat TCP-LISTEN:31337,reuseaddr,fork EXEC:%s\n" $1'
 
-alias r='~/.config/lf/lf-ueberzug'
+alias r='lfcd'
+
 
 
 # Load zsh-syntax-highlighting; should be last.
