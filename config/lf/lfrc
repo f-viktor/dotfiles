@@ -1,0 +1,4 @@
+set previewer ~/.config/lf/lf-ueberzug-previewer
+set cleaner ~/.config/lf/lf-ueberzug-cleaner
+
+# Put additional configuration which shall only apply to lf-ueberzug below
