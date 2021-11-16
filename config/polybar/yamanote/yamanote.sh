@@ -5,6 +5,7 @@ WIFI=wlp3s0
 INTERNET=eno1
 PASSWORD=If_you_hav3_seen_this_1ts_probably_2_late
 CONNAME=hotsp
+TAG=山手線
 
 enable_hotspot () {
 	nmcli device wifi hotspot ifname $WIFI con-name $CONNAME ssid $TAG password $PASSWORD
@@ -21,7 +22,7 @@ enable_hotspot () {
 }
 
 disable_hotspot() {
-	nmcli c dowm $CONNAME
+	nmcli c down hotsp
 #iptables -t nat -F
 #iptables -t mangle -F
 #iptables -F
@@ -46,8 +47,6 @@ else
 	fi
 	echo $TAG
 fi
-
-
 
 
 
