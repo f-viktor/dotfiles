@@ -221,6 +221,8 @@ format-foreground = #555
 format = <label>
 exec = ~/.config/polybar/audio-output/audio-output.sh
 click-left = ~/.config/polybar/audio-output/audio-output.sh --toggle
+click-right = ~/.config/polybar/audio-output/audio-output.sh --codec
+
 
 [module/pulseaudio]
 type = internal/pulseaudio
