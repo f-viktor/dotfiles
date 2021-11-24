@@ -1,5 +1,5 @@
 HEADPHONE=%{F\#ffb000}%{F-}
-CALLMODE=%{F\#ffb000}%{F-}
+CALLMODE=%{F\#ffb000}%{F-}
 SPEAKER=
 CURRENT_MODE="_"
 
