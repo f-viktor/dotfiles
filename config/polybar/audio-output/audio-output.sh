@@ -22,7 +22,7 @@ function set_default_playback_device_next {
     inc=${1:-1}
     num_devices=$(pactl list sinks short| wc -l)
     sink_arr=($(pactl list sinks short | awk '{print $1}'))
-    default_sink_index=$(( $(pactl list sinks short | grep -no 'RUNNING' | grep -o '^[0-9]\+') - 1 ))
+    default_sink_index=$(( $(pactl list sinks short | grep -no $(pactl get-default-sink) | grep -o '^[0-9]\+') - 1 ))
     default_sink_index=$(( ($default_sink_index + $num_devices + $inc) % $num_devices ))
     default_sink=${sink_arr[$default_sink_index]}
     pactl set-default-sink $default_sink
@@ -31,7 +31,7 @@ function set_default_playback_device_next {
 
 function set_potato_hsf {
     bluez_card_name=$(pactl list cards | grep $HEADPHONE_CARD_NAME -B 10 | grep "Name" | awk '{print $2}')
-    current_codec=$(pactl list sinks | grep "RUNNING" -A20 | grep "api.bluez5.profile")
+    current_codec=$(pactl list sinks | grep $(pactl get-default-sink) -A20 | grep "api.bluez5.profile")
     if echo "$current_codec" | grep -q "a2dp"; then
    	pactl set-card-profile $bluez_card_name $BAD_PLUS_MIC
     else
@@ -39,19 +39,18 @@ function set_potato_hsf {
     fi
 }
 
-#switch between audio outputs
+
 if [[ $1 = "--toggle" ]]; then
 	set_default_playback_device_next
 fi
 
-#change codecs of TWL device
 if [[ $1 = "--codec" ]]; then
 	set_potato_hsf  
 fi
 
-#print icon for current device 
-if pactl list sinks | grep "RUNNING" -A 10| grep -q "$HEADPHONE_CARD_NAME"; then
-    current_codec=$(pactl list sinks | grep "RUNNING" -A20 | grep "api.bluez5.profile")
+
+if pactl list sinks | grep $(pactl get-default-sink) -A 10| grep -q "$HEADPHONE_CARD_NAME"; then
+	current_codec=$(pactl list sinks | grep $(pactl get-default-sink) -A20 | grep "api.bluez5.profile")
     if echo "$current_codec" | grep -q "a2dp"; then
 	CURRENT_MODE=$HEADPHONE
     else
@@ -62,7 +61,3 @@ else
 fi
 
 echo $CURRENT_MODE 
-
-
-
-
