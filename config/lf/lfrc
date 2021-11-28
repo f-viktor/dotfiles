@@ -7,13 +7,15 @@
 set previewer ~/.config/lf/lf-ueberzug-previewer
 set cleaner ~/.config/lf/lf-ueberzug-cleaner
 
-# Put additional configuration which shall only apply to lf-ueberzug below
+
 cmd open ${{
     case $(file --mime-type "$f" -b) in
-        inode/x-empty) $EDITOR $f;;
+    	inode/x-empty) $EDITOR $f;;
         text/*) $EDITOR $f;;
-        audio/mpeg) mpv $f;;
-        video/*) setsid mpv $f > /dev/null 2 2>&1 & ;;
-        *) for f in $f; do setsid $OPENER $f > /dev/null 2> /dev/null & done;;
-    esac
+	audio/mpeg) mpv $f;;
+	video/*) setsid mpv "$f" > /dev/null 2 2>&1 & ;;
+	application/*) setsid zathura "$f" > /dev/null 2> /dev/null & ;; 
+        *) for f in "$f"; do setsid $OPENER "$f" > /dev/null 2> /dev/null & done;;
+    esac 
 }}
+# Put additional configuration which shall only apply to lf-ueberzug below
