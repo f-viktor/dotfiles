@@ -11,7 +11,10 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec --no-startup-id dunst
 
 # clipboard manager
-exec --no-startup-id xfce4-clipman
+exec --no-startup-id copyq
+
+# screenshot manager
+exec --no-startup-id flameshot
 
 # set displays via arandr script
 exec --no-startup-id  "~/.config/i3/screenlayout.sh"
@@ -36,17 +39,17 @@ bindsym $mod+Escape exec rofi -show Kill -modi Kill:$HOME/.config/rofi/terminato
 bindsym $mod+BackSpace exec multilockscreen -l dimblur --display 2
 
 # set prntscreen
-bindsym F12 exec xfce4-screenshooter
+bindsym F12 exec flameshot gui
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 8
+font pango:monospace 10
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec urxvt
+bindsym $mod+Return exec alacritty
 
 # kill focused window
 bindsym $mod+Shift+q kill
