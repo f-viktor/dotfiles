@@ -74,7 +74,7 @@ font-5 = Noto Color Emoji:scale=8;1:antialias=true
 ;font-n = Font Awesome 5 Brands:pixelsize=10;3
 
 #modules-left = date temperature battery battery2 eth wlan cpu memory filesystem pulseaudio xbacklight
-modules-left = date temperature eth wlan cpu memory filesystem newsboat newsboat-update yamanote audio-output pulseaudio tea-timer
+modules-left = date intertime temperature eth wlan cpu memory filesystem newsboat newsboat-update yamanote audio-output pulseaudio tea-timer
 modules-center = spotify-prev spotify spotify-next
 modules-right = i3
 
@@ -201,7 +201,7 @@ card = intel_backlight
 [module/tea-timer]
 type = custom/script
 exec-font = 4
-format-foreground = #555
+format-foreground = ${root.foreground}
 
 
 exec = ~/.config/polybar/timer/tea-timer.sh tail '' 5
@@ -221,13 +221,12 @@ format-foreground = #555
 format = <label>
 exec = ~/.config/polybar/audio-output/audio-output.sh
 click-left = ~/.config/polybar/audio-output/audio-output.sh --toggle
-click-right = ~/.config/polybar/audio-output/audio-output.sh --codec
-
+click-right = ~/.config/polybar/audio-output/audio-output.sh --codec 
 
 [module/pulseaudio]
 type = internal/pulseaudio
 
-format-volume = <label-volume>
+format-volume = <label-volume> 
 label-volume = %percentage%%
 label-volume-foreground = ${root.foreground}
 
@@ -273,7 +272,7 @@ click-left = ~/.config/polybar/news/news.sh
 type = custom/script
 format = <label>
 label = ""
-exec = newsboat -x reload && notify-send "Newsboat updated"
+exec = newsboat -x reload
 interval = 3600
 
 [module/filesystem]
@@ -341,6 +340,16 @@ format-disconnected =
 ;format-disconnected-underline = ${self.format-connected-underline}
 ;label-disconnected = %ifname% disconnected
 ;label-disconnected-foreground = ${colors.foreground-alt}
+
+[module/intertime]
+type = custom/script
+interval = 5
+
+format-prefix = 頃
+format-prefix-foreground = ${colors.foreground-alt}
+format-underline = ${colors.underline-8}
+
+exec = TZ=Japan date +%H:%M
 
 [module/date]
 type = internal/date
