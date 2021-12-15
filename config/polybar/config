@@ -345,9 +345,9 @@ format-disconnected =
 type = custom/script
 interval = 5
 
-format-prefix = 頃
+format-prefix = 時
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = ${colors.underline-8}
+format-underline = ${colors.underline-7}
 
 exec = TZ=Japan date +%H:%M
 
