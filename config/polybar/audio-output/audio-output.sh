@@ -45,7 +45,7 @@ if [[ $1 = "--toggle" ]]; then
 fi
 
 if [[ $1 = "--codec" ]]; then
-	set_potato_hsf  
+	set_potato_hsf 
 fi
 
 
@@ -53,11 +53,14 @@ if pactl list sinks | grep $(pactl get-default-sink) -A 10| grep -q "$HEADPHONE_
 	current_codec=$(pactl list sinks | grep $(pactl get-default-sink) -A20 | grep "api.bluez5.profile")
     if echo "$current_codec" | grep -q "a2dp"; then
 	CURRENT_MODE=$HEADPHONE
-    else
+    elif echo "$current_codec" | grep -q "headset"; then 
 	CURRENT_MODE=$CALLMODE
+    else
+	set_potato_hsf
     fi
 else
 	CURRENT_MODE=$SPEAKER
 fi
 
 echo $CURRENT_MODE 
+
