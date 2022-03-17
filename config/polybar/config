@@ -65,7 +65,7 @@ module-margin-right = 2
 font-0 = Noto Sans:pixelsize=10;1:antialias=true
 font-1 = Noto Sans Symbols:fontformat=truetype:size=8:antialias=true;0
 font-2 = Noto Sans Mono CJK JP:pixelsize=10;1:antialias=true
-font-3 = Font Awesome 5 Free:style=Solid:pixelsize=10;1
+font-3 = Font Awesome 6 Free:style=Solid:pixelsize=10;1
 font-4 = Noto Sans Mono:pixelsize=10;1:antialias=true
 font-5 = Noto Color Emoji:scale=8;1:antialias=true
 
@@ -74,9 +74,9 @@ font-5 = Noto Color Emoji:scale=8;1:antialias=true
 ;font-n = Font Awesome 5 Brands:pixelsize=10;3
 
 #modules-left = date temperature battery battery2 eth wlan cpu memory filesystem pulseaudio xbacklight
-modules-left = date intertime temperature eth wlan cpu memory filesystem newsboat newsboat-update yamanote audio-output pulseaudio tea-timer
+modules-left = date temperature eth wlan cpu memory filesystem newsboat newsboat-update yamanote audio-output pulseaudio tea-timer
 modules-center = spotify-prev spotify spotify-next
-modules-right = i3
+modules-right = tokyo-quakes intertime i3
 
 tray-position = left
 tray-padding = 1
@@ -200,9 +200,8 @@ card = intel_backlight
 
 [module/tea-timer]
 type = custom/script
-exec-font = 4
 format-foreground = ${root.foreground}
-
+font = 5
 
 exec = ~/.config/polybar/timer/tea-timer.sh tail '' 5
 tail = true
@@ -216,7 +215,7 @@ scroll-down = ~/.config/polybar/timer/tea-timer.sh increase -5 ; ~/.config/polyb
 
 [module/audio-output]
 type = custom/script
-exec-font = 4
+exec-font = 2
 format-foreground = #555
 format = <label>
 exec = ~/.config/polybar/audio-output/audio-output.sh
@@ -262,7 +261,7 @@ click-left = sudo ~/.config/polybar/yamanote/yamanote.sh --toggle
 type = custom/script
 label-foreground = #555
 format = <label>
-format-underline = ${colors.underline-1}
+format-underline = ${colors.underline-3}
 label =  %{F#ffffff}%output%%{F-}
 ;this needs a separate script so it shows something even when its open
 exec = ~/.config/polybar/news/news-status.sh
@@ -282,7 +281,7 @@ mount-0 = /
 
 label-mounted-font = 1
 
-label-mounted-underline = ${colors.underline-2}
+label-mounted-underline = ${colors.underline-4}
 label-mounted = %{F#555}%mountpoint%%{F-} %percentage_used%%
 label-unmounted = %mountpoint% not mounted
 label-unmounted-foreground = ${colors.foreground-alt}
@@ -292,7 +291,7 @@ type = internal/memory
 interval = 2
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = ${colors.underline-3}
+format-underline = ${colors.underline-5}
 label = %percentage_used%%
 
 [module/cpu]
@@ -300,7 +299,7 @@ type = internal/cpu
 interval = 2
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = ${colors.underline-4}
+format-underline = ${colors.underline-6}
 label = %percentage:2%%
 
 [module/wlan]
@@ -309,7 +308,7 @@ interface = wlp3s0
 interval = 3.0
 
 format-connected = <ramp-signal> <label-connected>
-format-connected-underline = ${colors.underline-5}
+format-connected-underline = ${colors.underline-6}
 label-connected = %essid%
 
 format-disconnected =
@@ -327,10 +326,10 @@ ramp-signal-foreground = ${colors.foreground-alt}
 
 [module/eth]
 type = internal/network
-interface = enp0s31f6
+interface = eno1
 interval = 3.0
 
-format-connected-underline = ${colors.underline-6}
+format-connected-underline = ${colors.underline-7}
 format-connected-prefix = " "
 format-connected-prefix-foreground = ${colors.foreground-alt}
 label-connected = %local_ip%
@@ -341,13 +340,26 @@ format-disconnected =
 ;label-disconnected = %ifname% disconnected
 ;label-disconnected-foreground = ${colors.foreground-alt}
 
+[module/tokyo-quakes]
+type = custom/script
+interval = 3600
+format-foreground = ${root.foreground}
+font = 5
+
+exec = ~/.config/polybar/tokyo-quakes/tokyo-quakes -q -pref tokyo | awk '{print $1}'
+click-left = ~/.config/polybar/tokyo-quakes/tokyo-quakes -q -pref tokyo | cut -c 3- | xargs xdg-open  
+format-prefix = 地震
+format-prefix-foreground = ${colors.foreground-alt}
+format-underline = ${colors.underline-2}
+
+
 [module/intertime]
 type = custom/script
 interval = 5
 
 format-prefix = 時
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = ${colors.underline-7}
+format-underline = ${colors.underline-1}
 
 exec = TZ=Japan date +%H:%M
 
